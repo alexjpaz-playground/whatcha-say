@@ -1,0 +1,74 @@
+<html>
+  <title>whatcha-say</title>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  </head>
+  <body>
+    <style>
+    html, body {
+      font-family: sans-serif;
+    }
+
+     .flex {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       width: 100%;
+       height: 100%;
+     }
+
+     .hero-text {
+       font-size: 5vw;
+       text-align: center;
+     }
+
+
+     @media (min-width: 768px) {
+       .flex-center {
+         max-width: 50%;
+         flex: 1;
+       }
+     }
+
+     #pulse {
+       background: blue;
+       width: 2000px;
+       height: 2000px;
+       border-radius: 50%;
+       position: fixed;
+       top: 50%;
+       left: 50%;
+     }
+
+    </style>
+    <div class='flex'>
+      <div class='flex-center'>
+        <div class='hero-text'>hit any button to play</div>
+      </div>
+    </div>
+    <script>
+      var pulseElement = document.querySelector('#pulse');
+
+      var audio = new Audio("./mmmwatchasaaayyy2.mp3");
+      audio.load();
+
+      audio.addEventListener('play', function() { 
+      },false);
+
+      audio.addEventListener('ended', function() {
+      }, false);
+
+
+      document.addEventListener('keydown', function() {
+        try {
+          audio.load();
+          audio.play().catch(function(e) {
+            console.error(e);
+          });
+        } catch(e) {
+          console.log(e);
+        }
+      });
+    </script>
+  </body>
+</html>
