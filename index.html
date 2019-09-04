@@ -7,6 +7,7 @@
     <style>
     html, body {
       font-family: sans-serif;
+
     }
 
      .flex {
@@ -30,14 +31,24 @@
        }
      }
 
-     #pulse {
-       background: blue;
-       width: 2000px;
-       height: 2000px;
-       border-radius: 50%;
-       position: fixed;
-       top: 50%;
-       left: 50%;
+     .pulse {
+       animation-duration: 2s;
+       animation-name: pulse;
+       animation-timing-function: ease-out;
+     }
+
+     @keyframes pulse {
+       from {
+         background: rgba(0,212,255,1);
+         font-size: 10vw;
+         color: blue;
+       }
+
+       to {
+         background: white;
+         font-size: 5vw;
+         color: black;
+       }
      }
 
     </style>
@@ -47,7 +58,8 @@
       </div>
     </div>
     <script>
-      var pulseElement = document.querySelector('#pulse');
+      var pulseElement = document.querySelector('body');
+      var heroTextElement = document.querySelector('.hero-text');
 
       var audio = new Audio("./mmmwatchasaaayyy2.mp3");
       audio.load();
@@ -58,16 +70,25 @@
       audio.addEventListener('ended', function() {
       }, false);
 
-
-      document.addEventListener('keydown', function() {
+      var play = function () {
         try {
           audio.load();
           audio.play().catch(function(e) {
             console.error(e);
           });
+          heroTextElement.innerHTML = 'whatcha say';
+          pulseElement.className = '';
+          void pulseElement.offsetWidth;
+          pulseElement.className = 'pulse';
         } catch(e) {
           console.log(e);
         }
+      };
+
+      var events = ['keydown', 'touchstart', 'click']; 
+
+      events.forEach(function(ename) {
+        document.addEventListener(ename,  play);
       });
     </script>
   </body>
